@@ -23,6 +23,7 @@
 	<div id = "wrapper">
 				<div id = "content">
 	<?php
+						session_start();
 						if (isset$_Session['ID']) {
 							echo 'You are already logged in!';
 						}

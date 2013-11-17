@@ -7,7 +7,7 @@ $dbname = 'stu34639096';
 
 $db= new PDO('mysql:host=sql09.ok.ubc.ca/;dbname='.dbname, $user, $pass);
 
-session_start();
+
 
 function getID($login) {
 		$result = $db->prepare('select studentID from users where loginID = :login');
