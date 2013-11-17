@@ -1,0 +1,19 @@
+header{
+
+height:50px;
+width:max-width;
+
+}
+
+#wrapper {
+	margin-top: 190px;
+	background-color: #0B173B;
+	min-height:500px;
+}
+
+#content {
+	width: 80%;
+	height:100%;
+	margin: auto;
+	background-color:white;
+}
