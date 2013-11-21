@@ -36,13 +36,8 @@
                 <ul role="navigation" class="nav">
 				<li><a href="students.php">Students</a></li>
 				<?php
-					$result = $db->prepare('SELECT annualReport1, annualReport2, annualReport3, annualReport4, annualReport5, annualReport6 FROM form WHERE studentID ='.$_GET['studentID']);
-					$result->execute();
-					$result = $result->fetchAll();
 					for($i = 1; $i <= 6; $i++){
-						if($row['annualReport'.$i]==1)
-							echo $i;
-							echo'<li><a href="annualReport.php?number='.$i.'">Annual Report '.$i.'</a></li>';
+							echo'<li><a href="annualReport.php?studentID='.$_GET['studentID'].'&annualReport=annualReport'.$i.'">annualReport'.$i.'</a></li>';
 					}
 				
 				?>
@@ -54,69 +49,85 @@
 
     <!--Form-->
         <div class="menu">
-    <form class="well" id="form">
-        <p>Student ID</p>
-        <input type="text" class="span3"/>
+    <?php echo '<form class="well" id="form" action="updateProfile.php?studentID='.$_GET['studentID'].'" method="post">';?>
+		<?php
+			$result = $db->prepare('select * from form where studentID ='.$_GET['studentID']);
+			$result->execute();
+			$result = $result->fetch();
+		?>
+		<p>Student ID</p>
+		<?php
+			echo '<input type="text" class="span3" placeholder="'.$result['studentID'].'"/>';
+		?>
         <br>
-        
         <p>Name</p>
-        <input type="text" class="span3" placeholder="First name"/> &nbsp;
-        <input type="text" class="span3" placeholder="Last name"/>
+        <input type="text"  name="firstName" value="<?php echo $result['firstName']?>"/> &nbsp;
+        <input type="text"  name="lastName"	value="<?php echo $result['lastName']?>"/>
         <br>
         
         <p>Degree</p>
-        <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">MSc.</button>
-            <button type="button" class="btn btn-primary">PhD.</button>
-        </div>
+		<?php
+			if($result['degree']=="PHD"){
+				echo '<input type = "radio" name = "degree" value = "PHD" checked> PHD';
+				echo '<input type = "radio" name = "degree" value = "MSC" > MSC';
+			}
+			else{
+				echo '<input type = "radio" name = "degree" value = "PHD" > PHD';
+				echo '<input type = "radio" name = "degree" value = "MSC" checked> MSC';
+			}
+		?>
         <br><br>
         
         <p>Supervisors</p>
-        <input type="text" class="span3" placeholder="First name"/> &nbsp;
-        <input type="text" class="span3" placeholder="Last name"/>
+        <input type="text"  name="super1FirstName" value="<?php echo $result['super1FirstName']?>""/> &nbsp;
+        <input type="text" name="super1LastName" value="<?php echo $result['super1LastName']?>""/>
         <br><p></p>
-        <input type="text" class="span3" placeholder="First name"/> &nbsp;
-        <input type="text" class="span3" placeholder="Last name"/>
+        <input type="text"  name="super2FirstName" value="<?php echo $result['super2FirstName']?>"/> &nbsp;
+        <input type="text"  name="super2LastName" value="<?php echo $result['super2LastName']?>"/>
         <br>
         
         <p>Supervisors' emails</p>
-        <input type="text" class="span3" placeholder="e.g. supervisor1@ubc.ca"/>
+        <input type="text"  name="super1mail" value="<?php echo $result['super1mail']?>"/>
         <br><p></p>
-        <input type="text" class="span3" placeholder="e.g. supervisor2@ubc.ca"/>
+        <input type="text"  name="super2mail" value="<?php echo $result['super2mail']?>"/>
         <br>
         
         <p>Program</p>
-        <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">IGSO</button>
-            <button type="button" class="btn btn-primary">IGS</button>
-            <button type="button" class="btn btn-primary">MATH</button>
-        </div>
+		<?php
+			if($result['program']=="IGSO"){
+				echo '<input type = "radio" name = "program" value = "IGSO" checked> IGSO';
+				echo '<input type = "radio" name = "program" value = "IGS" > IGS';
+				echo '<input type = "radio" name = "program" value = "MATH" > MATH';
+			}
+			if($result['program']=="IGS"){
+				echo '<input type = "radio" name = "program" value = "IGSO"> IGSO';
+				echo '<input type = "radio" name = "program" value = "IGS" checked> IGS';
+				echo '<input type = "radio" name = "program" value = "MATH" > MATH';
+			}
+			if($result['program']=="MATH"){
+				echo '<input type = "radio" name = "program" value = "IGSO"> IGSO';
+				echo '<input type = "radio" name = "program" value = "IGS" > IGS';
+				echo '<input type = "radio" name = "program" value = "MATH" checked> MATH';
+			}
+		?>
         <br><br>
         
         <p>Room</p>
-        <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">ART</button>
-            <button type="button" class="btn btn-primary">ASC</button>
-            <button type="button" class="btn btn-primary">SCI</button>
-            <button type="button" class="btn btn-primary">FIP</button>
-            <button type="button" class="btn btn-primary">EME</button>
-        </div>
-        <br><br><p></p>
-        <input type="text" class="span3" placeholder="Room #"/>
+        <input type="text"  name="room" value="<?php echo $result['room']?>"/>
         <br>
         
         <p>Scholarship</p>
-        <input type="text" class="span3" placeholder="UGR/EGF/Other"/>
+        <input type="text"  name="scholarship" value="<?php echo $result['scholarship']?>"/>
         <br>
         
         <p>GTA</p>
-        <input type="text" class="span3" placeholder="First name"/>
+        <input type="text"  name="gta" value="<?php echo $result['gta']?>"/>
         <br>
 
         <br>
         <button class="btn btn-primary">Submit</button>
-        <button class="btn">Clear</button>
     </form>
+	
       </div>
 
 
