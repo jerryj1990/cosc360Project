@@ -35,7 +35,7 @@
 							echo '<label>Username</label>';
 							echo '<input type="text" class="span3" name="uid"/></br>';
 							echo '<label>Password</label>';
-							echo '<input type="text" class="span3" name="upass"/></br>';
+							echo '<input type="password" class="span3" name="upass"/></br>';
 							echo '<br><br>';
 							echo '<button class="btn btn-primary">Submit</button>';
 							echo '<button class="btn">Clear</button>';

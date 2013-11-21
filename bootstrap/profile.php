@@ -22,6 +22,7 @@
 </head>
 <body>
     <!--Drop down menu-->
+		<?php include 'functions.php'; ?>
 	<?php 
 		session_start(); 
 		if(!isset($_SESSION['ID']) && !isset($_SESSION['role'])){
@@ -33,17 +34,13 @@
             <div class="navbar-inner">
                 <a href="#" class="brand">UBC Grad Manager</a>
                 <ul role="navigation" class="nav">
-				<li><a href="profile.php">Profile</a></li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Annual Reports<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Annual Report 1</a></li>
-                            <li><a href="#">Annual Report 2</a></li>
-                            <li><a href="#">Annual Report 3</a></li>
-                            <li><a href="#">Annual Report 4</a></li>
-                            <li><a href="#">Annual Report 5</a></li>
-                            <li><a href="#">Annual Report 6</a></li>
-                        </ul>
+				<?php echo '<li><a href="profile.php?studentID='.$_GET['studentID'].'">Profile</a></li>';?>
+                            <?php
+								for($i = 1; $i <= 6; $i++){
+										echo'<li><a href="annualReport.php?studentID='.$_GET['studentID'].'&annualReport=annualReport'.$i.'">annualReport'.$i.'</a></li>';
+								}
+							
+							?>
 					<li><a href="logout.php">Logout</a></li>
                     </li>
                 </ul>
@@ -52,70 +49,57 @@
     </div>
 
     <!--Form-->
-        <div class="menu">
-    <form class="well" id="form">
-        <p>Student ID</p>
-        <input type="text" class="span3"/>
+		 <div class="menu">
+		<?php echo '<form class="well" id="form" action="profile.php?studentID='.$_GET['studentID'].'">';?>
+		<?php
+				$result = $db->prepare('select * from form where studentID ='.$_GET['studentID']);
+				$result->execute();
+				$result = $result->fetch();
+		?>
+		<p>Student ID</p>
+		<?php
+			echo '<textarea rows="1" class="uneditable-input">'.$result['studentID'].'</textarea>';
+		?>
         <br>
-        
         <p>Name</p>
-        <input type="text" class="span3" placeholder="First name"/> &nbsp;
-        <input type="text" class="span3" placeholder="Last name"/>
+        <?php echo '<textarea rows="1" class="uneditable-input">'.$result['firstName'].'</textarea>';?> &nbsp;
+        <?php echo '<textarea rows="1" class="uneditable-input">'.$result['lastName'].'</textarea>';?>
         <br>
         
         <p>Degree</p>
-        <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">MSc.</button>
-            <button type="button" class="btn btn-primary">PhD.</button>
-        </div>
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['degree'].'</textarea>';?>
         <br><br>
         
         <p>Supervisors</p>
-        <input type="text" class="span3" placeholder="First name"/> &nbsp;
-        <input type="text" class="span3" placeholder="Last name"/>
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['super1FirstName'].'</textarea>';?>&nbsp;
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['super1LastName'].'</textarea>';?>
         <br><p></p>
-        <input type="text" class="span3" placeholder="First name"/> &nbsp;
-        <input type="text" class="span3" placeholder="Last name"/>
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['super2FirstName'].'</textarea>';?>&nbsp;
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['super2LastName'].'</textarea>';?>
         <br>
         
         <p>Supervisors' emails</p>
-        <input type="text" class="span3" placeholder="e.g. supervisor1@ubc.ca"/>
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['super1mail'].'</textarea>';?>
         <br><p></p>
-        <input type="text" class="span3" placeholder="e.g. supervisor2@ubc.ca"/>
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['super2mail'].'</textarea>';?>
         <br>
         
         <p>Program</p>
-        <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">IGSO</button>
-            <button type="button" class="btn btn-primary">IGS</button>
-            <button type="button" class="btn btn-primary">MATH</button>
-        </div>
+		<?php echo '<textarea rows="1" class="uneditable-input">'.$result['program'].'</textarea>';?>
         <br><br>
         
         <p>Room</p>
-        <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">ART</button>
-            <button type="button" class="btn btn-primary">ASC</button>
-            <button type="button" class="btn btn-primary">SCI</button>
-            <button type="button" class="btn btn-primary">FIP</button>
-            <button type="button" class="btn btn-primary">EME</button>
-        </div>
-        <br><br><p></p>
-        <input type="text" class="span3" placeholder="Room #"/>
+        <?php echo '<textarea rows="1" class="uneditable-input">'.$result['room'].'</textarea>';?>
         <br>
         
         <p>Scholarship</p>
-        <input type="text" class="span3" placeholder="UGR/EGF/Other"/>
+        <?php echo '<textarea rows="1" class="uneditable-input">'.$result['scholarship'].'</textarea>';?>
         <br>
         
         <p>GTA</p>
-        <input type="text" class="span3" placeholder="First name"/>
-        <br>
-
-        <br>
-        <button class="btn btn-primary">Submit</button>
-        <button class="btn">Clear</button>
+        <?php echo '<textarea rows="1" class="uneditable-input">'.$result['gta'].'</textarea>';?>
     </form>
+	
       </div>
 
 

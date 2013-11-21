@@ -28,6 +28,9 @@
 		if(!isset($_SESSION['ID']) && !isset($_SESSION['role'])){
 				header('Location: login.php');
 			}
+		if($_SESSION['role']==0){
+				header('Location: profile.php');
+			}
 	?>
     <div class="menu">
         <div class="navbar navbar-static">
@@ -37,7 +40,7 @@
 				<li><a href="students.php">Students</a></li>
 				<?php
 					for($i = 1; $i <= 6; $i++){
-							echo'<li><a href="annualReport.php?studentID='.$_GET['studentID'].'&annualReport=annualReport'.$i.'">annualReport'.$i.'</a></li>';
+							echo'<li><a href="annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport=annualReport'.$i.'">annualReport'.$i.'</a></li>';
 					}
 				
 				?>

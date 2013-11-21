@@ -27,6 +27,9 @@
 		if(!isset($_SESSION['ID']) && !isset($_SESSION['role'])){
 				header('Location: login.php');
 			}
+		if($_SESSION['role']==0){
+				header('Location: profile.php');
+			}
 	?>
     <div class="menu">
         <div class="navbar navbar-static">
@@ -35,7 +38,6 @@
                 <ul role="navigation" class="nav">
 				<li><a href="students.php">Students</a></li>
                     <li class="dropdown">
-                     <li><a href="#">Annual Reports</a></li>
 					<li><a href="logout.php">Logout</a></li>
                     </li>
                 </ul>

@@ -12,7 +12,7 @@
 	$result->bindValue(":submitted", $_POST['submitted'], PDO::PARAM_STR);
 	$result->bindValue(":resent", $_POST['resent'], PDO::PARAM_STR);
 	$result->execute();
-	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
+	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
 	}
 	if($_GET['annualReport']=="annualReport2"){
 	$result = $db->prepare("UPDATE annualReport2 SET gradID=:gradID,status=:status,startDate=:startDate,endDate=:endDate,due=:due,submitting=:submitting,submitted=:submitted,resent=:resent WHERE studentID = :id");
@@ -26,7 +26,7 @@
 	$result->bindValue(":submitted", $_POST['submitted'], PDO::PARAM_STR);
 	$result->bindValue(":resent", $_POST['resent'], PDO::PARAM_STR);
 	$result->execute();
-	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
+	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
 	}
 	if($_GET['annualReport']=="annualReport3"){
 	$result = $db->prepare("UPDATE annualReport3 SET gradID=:gradID,status=:status,startDate=:startDate,endDate=:endDate,due=:due,submitting=:submitting,submitted=:submitted,resent=:resent WHERE studentID = :id");
@@ -40,7 +40,7 @@
 	$result->bindValue(":submitted", $_POST['submitted'], PDO::PARAM_STR);
 	$result->bindValue(":resent", $_POST['resent'], PDO::PARAM_STR);
 	$result->execute();
-	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
+	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
 	}
 	if($_GET['annualReport']=="annualReport4"){
 	$result = $db->prepare("UPDATE annualReport4 SET gradID=:gradID,status=:status,startDate=:startDate,endDate=:endDate,due=:due,submitting=:submitting,submitted=:submitted,resent=:resent WHERE studentID = :id");
@@ -54,7 +54,7 @@
 	$result->bindValue(":submitted", $_POST['submitted'], PDO::PARAM_STR);
 	$result->bindValue(":resent", $_POST['resent'], PDO::PARAM_STR);
 	$result->execute();
-	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
+	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
 	}
 	if($_GET['annualReport']=="annualReport5"){
 	$result = $db->prepare("UPDATE annualReport5 SET gradID=:gradID,status=:status,startDate=:startDate,endDate=:endDate,due=:due,submitting=:submitting,submitted=:submitted,resent=:resent WHERE studentID = :id");
@@ -68,7 +68,7 @@
 	$result->bindValue(":submitted", $_POST['submitted'], PDO::PARAM_STR);
 	$result->bindValue(":resent", $_POST['resent'], PDO::PARAM_STR);
 	$result->execute();
-	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
+	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
 	}
 	if($_GET['annualReport']=="annualReport6"){
 	$result = $db->prepare("UPDATE annualReport6 SET gradID=:gradID,status=:status,startDate=:startDate,endDate=:endDate,due=:due,submitting=:submitting,submitted=:submitted,resent=:resent WHERE studentID = :id");
@@ -82,6 +82,6 @@
 	$result->bindValue(":submitted", $_POST['submitted'], PDO::PARAM_STR);
 	$result->bindValue(":resent", $_POST['resent'], PDO::PARAM_STR);
 	$result->execute();
-	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
+	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
 	}
 ?>
