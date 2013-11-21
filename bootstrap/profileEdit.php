@@ -22,6 +22,7 @@
 </head>
 <body>
     <!--Drop down menu-->
+		<?php include 'functions.php'; ?>
 	<?php 
 		session_start(); 
 		if(!isset($_SESSION['ID']) && !isset($_SESSION['role'])){
@@ -31,21 +32,21 @@
     <div class="menu">
         <div class="navbar navbar-static">
             <div class="navbar-inner">
-                <a href="#" class="brand">UBC Grad Manager</a>
+			<?php echo '<h1>Profile of '.$_GET['studentID'].'</h1>';?>
                 <ul role="navigation" class="nav">
-				<li><a href="profile.php">Profile</a></li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Annual Reports<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Annual Report 1</a></li>
-                            <li><a href="#">Annual Report 2</a></li>
-                            <li><a href="#">Annual Report 3</a></li>
-                            <li><a href="#">Annual Report 4</a></li>
-                            <li><a href="#">Annual Report 5</a></li>
-                            <li><a href="#">Annual Report 6</a></li>
-                        </ul>
+				<li><a href="students.php">Students</a></li>
+				<?php
+					$result = $db->prepare('SELECT annualReport1, annualReport2, annualReport3, annualReport4, annualReport5, annualReport6 FROM form WHERE studentID ='.$_GET['studentID']);
+					$result->execute();
+					$result = $result->fetchAll();
+					for($i = 1; $i <= 6; $i++){
+						if($row['annualReport'.$i]==1)
+							echo $i;
+							echo'<li><a href="annualReport.php?number='.$i.'">Annual Report '.$i.'</a></li>';
+					}
+				
+				?>
 					<li><a href="logout.php">Logout</a></li>
-                    </li>
                 </ul>
             </div>
         </div>

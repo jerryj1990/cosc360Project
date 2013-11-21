@@ -1,13 +1,18 @@
 <?php
 	include 'functions.php';
-	$result = $db->prepare("SELECT StudentID FROM user WHERE loginID = :uid AND password = :upass");
+	$result = $db->prepare("SELECT studentID,role FROM user WHERE ID = :uid AND password = :upass");
 	$result->bindValue(":uid", $_POST['uid'], PDO::PARAM_STR);
 	$result->bindValue(":upass", $_POST['upass'], PDO::PARAM_STR);
 	$result->execute();
-	$result = $s->fetch();
+	$result = $result->fetch();
 	if (!empty($result)) {
-		$_Session['ID'] = $result;
-		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=' . SITE_ROOT . 'profile.php"></head></html>';
+		session_start();
+		$_SESSION['ID'] = $result['studentID'];
+		$_SESSION['role'] = $result['role'];
+		if($_SESSION['role']==1)
+		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=students.php"></head></html>';
+		if($_SESSION['role']==0)
+		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=profile.php"></head></html>';
 	} else 
-		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=' . SITE_ROOT . 'login.php?failed"></head></html>';
+		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=login.php?failed"></head></html>';
 ?>

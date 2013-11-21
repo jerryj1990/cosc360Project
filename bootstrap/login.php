@@ -24,7 +24,7 @@
 				<div id = "content">
 	<?php
 						session_start();
-						if (isset$_Session['ID']) {
+						if (isset($_SESSION['ID'])) {
 							echo 'You are already logged in!';
 						}
 						else {
