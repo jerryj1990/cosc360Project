@@ -1,0 +1,5 @@
+AuthName "Novell Authentication"
+AuthType Basic
+AuthBasicProvider ldap
+AuthLDAPURL ldap://ldap.ok.ubc.ca:389/o=ouc?uid?sub?(objectClass=posixAccount)
+require valid-user
