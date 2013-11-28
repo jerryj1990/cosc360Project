@@ -1,8 +1,7 @@
 <?php
 	include 'functions.php';
-	$result = $db->prepare("SELECT studentID,role FROM user WHERE ID = :uid AND password = :upass");
-	$result->bindValue(":uid", $_POST['uid'], PDO::PARAM_STR);
-	$result->bindValue(":upass", $_POST['upass'], PDO::PARAM_STR);
+	$result = $db->prepare("SELECT studentID,role FROM user WHERE studentID = :uid");
+	$result->bindValue(":uid", $_GET['studentID'], PDO::PARAM_STR);
 	$result->execute();
 	$result = $result->fetch();
 	if (!empty($result)) {

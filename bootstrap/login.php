@@ -1,3 +1,8 @@
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +18,9 @@
 	<div class="container fill">
 		<header>
 			 <img src="UBC.png"></a>          
-			 <?php include 'functions.php'; ?>
 		</header>
 		<div id = "wrapper">
-			<div id = "content">
+			<div id = "content" style="margin: 0px">
 			<?php
 				session_start();
 				if (isset($_SESSION['ID'])) {

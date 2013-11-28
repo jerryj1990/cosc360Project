@@ -27,10 +27,12 @@ nav {
 }
 
 #content {
-	width: 80%;
 	height:100%;
 	margin: auto;
 	background-color:white;
+	width: auto;
+	margin-left: 160px;
+	background-color: inherit;
 }
 
 #login {
@@ -71,12 +73,6 @@ p{
 
 .nav-pills {
 	height: 50px;
-}
-
-#content {
-	width: auto;
-	margin-left: 160px;
-	background-color: inherit;
 }
 
 #innerContent {

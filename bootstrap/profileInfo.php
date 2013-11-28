@@ -4,6 +4,14 @@ error_reporting(E_ALL);
 ?>
 <?php
     include_once 'functions.php';
+    $loginInfo = $db->prepare("SELECT studentID,role FROM user WHERE studentID = :uid");
+    $loginInfo->bindValue(":uid", $_GET['studentID'], PDO::PARAM_STR);
+    $loginInfo->execute();
+    $loginInfo = $loginInfo->fetch();
+    if (!empty($loginInfo)) {
+        session_start();
+        $_SESSION['role'] = $loginInfo['role'];
+    }
     $result = $db->prepare('select * from form where studentID ='.$_GET['studentID']);
     $result->execute();
     $result = $result->fetch();
@@ -95,5 +103,9 @@ error_reporting(E_ALL);
             <p><strong>GTA</strong></p>
         </div>
         <?php echo $result['gta'];?>
-            <a href="profileEdit?studentID=<?php echo $result['studentID']; ?>" class="btn btn-primary right">Edit</a>
+        <?php
+        if($_SESSION['role']==0){
+            echo '<a href="profileEdit?studentID='.$result['studentID'].'" class="btn btn-primary right">Edit</a>';
+        }
+        ?>
     </div>

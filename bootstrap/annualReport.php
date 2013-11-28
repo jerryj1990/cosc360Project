@@ -3,6 +3,14 @@
 <!-- Annual Report Information -->
 <div class="menu">
 <?php
+    $loginInfo = $db->prepare("SELECT studentID,role FROM user WHERE studentID = :uid");
+    $loginInfo->bindValue(":uid", $_GET['studentID'], PDO::PARAM_STR);
+    $loginInfo->execute();
+    $loginInfo = $loginInfo->fetch();
+    if (!empty($loginInfo)) {
+        session_start();
+        $_SESSION['role'] = $loginInfo['role'];
+    }
 	echo '<form class="well" id="form" action="annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'" method="post">';
 	$annualReport = $_GET['annualReport'];
 	$result = $db->prepare('select '.$annualReport. ' from form where studentID ='.$_GET['studentID']);
@@ -96,8 +104,10 @@
         <div class="span3">
             <p><strong>Resent</strong></p>
         </div>';
-        echo $result['resent'];        
-        echo '<a href="annualReportEdit?studentID='.$result['studentID'].'&annualReport='.$_GET['annualReport'].'" class="btn btn-primary right">Edit</a>';
+        echo $result['resent'];
+        if($_SESSION['role']==0){
+            echo '<a href="annualReportEdit?studentID='.$result['studentID'].'&annualReport='.$_GET['annualReport'].'" class="btn btn-primary right">Edit</a>';
+        }
     echo '</div>';
     echo '</div> <!-- /report -->';
 		echo '</form>';
