@@ -82,6 +82,7 @@
 	$result->bindValue(":submitted", $_POST['submitted'], PDO::PARAM_STR);
 	$result->bindValue(":resent", $_POST['resent'], PDO::PARAM_STR);
 	$result->execute();
+	echo 'Please wait while being redirected...';
 	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=annualReportEdit.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'"></head><body>';
 	}
 ?>

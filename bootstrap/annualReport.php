@@ -1,86 +1,109 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charsest="utf-8"/>
-        <title>Form</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-            <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-            <script type="text/javascript" src="js/bootstrap.min.js"></script>
-            <style type="text/css">
-                p{
-                    width: 130px;
-                    float: left;
-                    text-align: left;
-                    margin-right: 15px;
-                    display: block;
-                }
-                .menu{
-                    margin: 20px;
-                }
-            
-            </style>
-</head>
-<body>
-    <!--Drop down menu-->
-		<?php include 'functions.php'; ?>
-	<?php 
-		session_start(); 
-		if(!isset($_SESSION['ID']) && !isset($_SESSION['role'])){
-				header('Location: login.php');
-			}
-	?>
-    <div class="menu">
-        <div class="navbar navbar-static">
-            <div class="navbar-inner">
-			<?php echo '<h1>'.$_GET['annualReport'].' for '.$_GET['studentID'].'</h1>';?>
-                <ul role="navigation" class="nav">
-				<li><a href="students.php">Students</a></li>
-				<?php
-					for($i = 1; $i <= 6; $i++){
-							echo'<li><a href="annualReport.php?studentID='.$_GET['studentID'].'&annualReport=annualReport'.$i.'">annualReport'.$i.'</a></li>';
-					}
-				
-				?>
-					<li><a href="logout.php">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<?php include_once 'header.php'; ?>
 
-    <!--Form-->
-        <div class="menu">
-		<?php
-			echo '<form class="well" id="form" action="annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'" method="post">';
-			$annualReport = $_GET['annualReport'];
-			$result = $db->prepare('select '.$annualReport. ' from form where studentID ='.$_GET['studentID']);
-			$result->execute();
-			$result = $result->fetch();
-			if($result[$annualReport]){
-				$result = $db->prepare('select * from '.$_GET['annualReport'].' where studentID ='.$_GET['studentID']);
-				$result->execute();
-				$result = $result->fetch();
-				echo '<p>GradID</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['gradID'].'</textarea> &nbsp;<br>';
-				echo '<p>Status</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['status'].'</textarea><br>';
-				echo '<p>Start</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['startDate'].'</textarea><br>';
-				echo '<p>End Date</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['endDate'].'</textarea><br>';
-				echo '<p>Due</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['due'].'</textarea><br>';
-				echo '<p>Submitting</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['submitting'].'</textarea><br>';
-				echo '<p>Submitted</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['submitted'].'</textarea><br>';
-				echo '<p>Resent</p>';
-				echo '<textarea rows="1" class="uneditable-input">'.$result['resent'].'</textarea><br>';
-				echo '</form>';
-			}
-		?>
-	
-      </div>
+<!-- Annual Report Information -->
+<div class="menu">
+<?php
+	echo '<form class="well" id="form" action="annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'" method="post">';
+	$annualReport = $_GET['annualReport'];
+	$result = $db->prepare('select '.$annualReport. ' from form where studentID ='.$_GET['studentID']);
+	$result->execute();
+	$result = $result->fetch();
+	if($result[$annualReport]){
+		$result = $db->prepare('select * from '.$_GET['annualReport'].' where studentID ='.$_GET['studentID']);
+		$result->execute();
+		$result = $result->fetch();
+
+		/*
+			This keeps the HTML looking pretty, even though it looks a bit off here
+		*/
+
+		echo '
+<!-- profile.php sub-menu -->
+    <ul class="nav nav-pills">
+        <li><a href="profile.php?studentID='.$_GET['studentID'].'">Profile</a></li>';
+            for($i = 1; $i <= 6; $i++){
+                echo'<li><a href="annualReport.php?studentID='.$_GET['studentID'].'&annualReport=annualReport'.$i.'">Annual Report '.$i.'</a></li>';
+        }
+    	echo '</ul>';
+
+        echo '<div id="report">';
+		echo '
+<!-- Student ID -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>Student ID</strong></p>
+        </div>';
+		echo $result['gradID'];
+    echo '</div>';
+
+    echo '
+<!-- Status -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>Status</strong></p>
+        </div>';
+		echo $result['status'];
+    echo '</div>';
+
+    echo '
+<!-- Start Date -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>Start Date</strong></p>
+        </div>';
+        echo $result['startDate'];
+    echo '</div>';
+
+    echo '
+<!-- End Date -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>End Date</strong></p>
+        </div>';
+        echo $result['endDate'];
+    echo '</div>';
+
+    echo '
+<!-- Due Date -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>Due Date</strong></p>
+        </div>';
+        echo $result['due'];
+    echo '</div>';
+
+    echo '
+<!-- Submitting -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>Submitting</strong></p>
+        </div>';
+        echo $result['submitting'];
+    echo '</div>';
+
+    echo '
+<!-- Submitted -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>Submitted</strong></p>
+        </div>';
+        echo $result['submitted'];
+    echo '</div>';
+
+    echo '
+<!-- Resent -->
+    <div class="row">
+        <div class="span3">
+            <p><strong>Resent</strong></p>
+        </div>';
+        echo $result['resent'];        
+        echo '<a href="annualReportEdit?studentID='.$result['studentID'].'&annualReport='.$_GET['annualReport'].'" class="btn btn-primary right">Edit</a>';
+    echo '</div>';
+    echo '</div> <!-- /report -->';
+		echo '</form>';
+	}
+?>
+</div>
 
 
-</body>
-</html>
+<?php include_once 'footer.php'; ?>

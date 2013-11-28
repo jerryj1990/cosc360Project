@@ -1,68 +1,57 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charsest="utf-8"/>
-        <title>Form</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-            <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-            <script type="text/javascript" src="js/bootstrap.min.js"></script>
-            <style type="text/css">
-                p{
-                    width: 130px;
-                    float: left;
-                    text-align: left;
-                    margin-right: 15px;
-                    display: block;
-                }
-                .menu{
-                    margin: 20px;
-                }
-            
-            </style>
-</head>
-<body>
-    <!--Drop down menu-->
-	<?php 
-		session_start(); 
-		if(!isset($_SESSION['ID']) && !isset($_SESSION['role'])){
-				header('Location: login.php');
-			}
-		if($_SESSION['role']==0){
-				header('Location: profile.php');
-			}
+<?php include_once 'header.php'; ?>
+
+<?php 
+	if($_SESSION['role']==0){
+		header('Location: profile.php');
+	}
+?>
+
+<!--Form-->
+<div class="menu">
+<form class="well">
+    <?php
+		$result = $db->prepare('select user.studentID,firstName,lastName from user,form where form.studentID=user.studentID AND role = 0');
+		$result->execute();
+		$result = $result->fetchAll();
+        //Create Student List
+        echo '<div class="studentNav"> <!-- studentNav -->';
+        echo '<ul class="nav nav-list">';
+        echo '<div class="nav-header">Student List</div>';
+		foreach ($result as $row) {
+			echo '<li><a onclick="loadProfile('.$row['studentID'].')">' . $row['lastName'] . ', '. $row['firstName'] .'</a></li>';
+		}
+        echo '</ul>';
+        echo '</div> <!-- /studentNav -->';
 	?>
-    <div class="menu">
-        <div class="navbar navbar-static">
-            <div class="navbar-inner">
-                <h1>Coordinator</h1>
-                <ul role="navigation" class="nav">
-				<li><a href="students.php">Students</a></li>
-                    <li class="dropdown">
-					<li><a href="logout.php">Logout</a></li>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <!--Form-->
-		<?php include 'functions.php'; ?>
-        <div class="menu">
-    <form class="well" id="form">
-        <?php
-			$result = $db->prepare('select user.studentID,firstName,lastName from user,form where form.studentID=user.studentID AND  role = 0');
-			$result->execute();
-			$result = $result->fetchAll();
-			foreach ($result as $row) {
-						echo '<center><table>';
-						echo '<tr><td><a href="profileEdit.php?studentID='.$row['studentID'].'">' . $row['firstName'] . ', '. $row['lastName'] .'</td></tr></a></br>'.
-						'</table></center>';
-					}
-		
-		?>
-    </form>
-      </div>
+    <!-- Loads in profile.php of first student on list by default -->
+    <script>
+    $(document).ready(function(){
+        var sid = $('.nav-list > li > a:first-child').attr("onclick");
+        sid = sid.substring(12,20);
+        loadProfile(sid);
+    });
 
+    function loadProfile(student){
+        $.get('profile.php?studentID='+student, function(response){
+            var data = $(response);
+            var input = data.find("#profileInfo");
+            $("#content").html(input.html());
 
-</body>
-</html>
+            var node;
+            for(var i=0; i<data.length; i++){
+                node = $(data.get(i));
+                if(node.prop("tagName")=="script"){
+                    eval(node.html());
+                }
+            }
+        });
+    }
+    </script>
+
+    <div id="content"></div>
+
+</form>
+</div>
+
+<?php include_once 'footer.php'; ?>

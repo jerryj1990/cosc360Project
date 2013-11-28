@@ -10,9 +10,9 @@
 		$_SESSION['ID'] = $result['studentID'];
 		$_SESSION['role'] = $result['role'];
 		if($_SESSION['role']==1)
-		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=students.php"></head></html>';
+			echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=students.php"></head></html>';
 		if($_SESSION['role']==0)
-		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=profile.php?studentID='.$_SESSION['ID'].'"></head></html>';
+			echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=profile.php?studentID='.$_SESSION['ID'].'"></head></html>';
 	} else 
 		echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=login.php?failed"></head></html>';
 ?>

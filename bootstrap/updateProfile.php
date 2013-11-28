@@ -19,5 +19,6 @@
 	$result->bindValue(":scholarship", $_POST['scholarship'], PDO::PARAM_STR);
 	$result->bindValue(":gta", $_POST['gta'], PDO::PARAM_STR);
 	$result->execute();
-	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=profileEdit.php?studentID='.$_GET['studentID'].'"></head><body>';
+	echo 'Please wait while being redirected...';
+	echo '<html><head><META HTTP-EQUIV="refresh" CONTENT="3;URL=students.php"></head><body>';
 ?>
