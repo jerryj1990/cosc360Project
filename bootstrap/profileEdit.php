@@ -1,6 +1,10 @@
 <?php include_once 'header.php'; ?>
 
 <?php 
+<<<<<<< HEAD
+	session_start();
+=======
+>>>>>>> ac5e1896f6ee36be216042d3d37e28a2b05b1a97
 	if($_SESSION['role']==0){
 		header('Location: profile.php');
 	}
