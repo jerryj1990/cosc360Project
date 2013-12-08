@@ -28,6 +28,7 @@ error_reporting(E_ALL);
 		</header>
 		<div id = "wrapper">
 			<div id = "content" style="margin: 0px">
+			<!--making forms for login it send to verify.php to check the correctness of ID and password-->
 			<?php
 				session_start();
 				if (isset($_SESSION['ID'])) {
@@ -49,7 +50,8 @@ error_reporting(E_ALL);
 					echo '<div id="canvasHolder"></div>';
 				}
 			?>
-
+			<!--javascript code to access the webcam. inculding the size of the picture and the size of the video that will be
+			display in the login page-->
 		    <script>
 	        var video;
 	        var dataURL;

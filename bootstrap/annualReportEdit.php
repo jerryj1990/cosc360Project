@@ -1,3 +1,4 @@
+<!-- this file is updates the annual report in the database-->
 <?php include_once 'header.php'; ?>
 
 <?php
@@ -13,6 +14,9 @@ error_reporting(E_ALL);
 
 <!--Form-->
 <div class="menu">
+<!--retrieving information according to the annualreport the user cliked
+ previously. If the annualReport field in "form" table is 1 in such annual report it will retrieve all the informaiton form the table. 
+ It also show a create report button if the field is 0-->
 	<?php
 		echo '<form class="well" id="form" action="updateReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'" method="post">';
 		$annualReport = $_GET['annualReport'];

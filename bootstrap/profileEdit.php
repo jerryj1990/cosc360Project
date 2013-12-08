@@ -1,3 +1,4 @@
+<!--Forms for the coordinator to input in order to update the general information in database-->
 <?php include_once 'header.php'; ?>
 
 <?php 
@@ -10,7 +11,8 @@
 	}
 ?>
 
-<!--Form-->
+<!--SQL query to retreive the information we have in the database. the form will send to updatProfile.php to
+do the query to insert the new information in the database-->
 <div class="menu">
     <?php echo '<form class="well" id="form" action="updateProfile.php?studentID='.$_GET['studentID'].'" method="post">';?>
 	<?php
