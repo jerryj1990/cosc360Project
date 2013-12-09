@@ -2,10 +2,11 @@
 will send the user back to students.php-->
 <?php
 	include 'functions.php';
-	$result = $db->prepare("UPDATE form SET firstName = :firstName, lastName = :lastName, 
+	$result = $db->prepare("UPDATE form SET annualReport=:annualReport, firstName = :firstName, lastName = :lastName, 
 	degree = :degree, super1FirstName=:super1FirstName,super1LastName=:super1LastName,super2FirstName=:super2FirstName,
 	super2LastName=:super2LastName,super1mail=:super1mail,super2mail=:super2mail,program=:program,room=:room,scholarship=:scholarship,gta=:gta WHERE studentID = :id");
 	$result->bindValue(":id", $_GET['studentID'], PDO::PARAM_STR);
+	$result->bindValue(":annualReport", $_POST['annualReport'], PDO::PARAM_STR);
 	$result->bindValue(":firstName", $_POST['firstName'], PDO::PARAM_STR);
 	$result->bindValue(":lastName", $_POST['lastName'], PDO::PARAM_STR);
 	$result->bindValue(":degree", $_POST['degree'], PDO::PARAM_STR);

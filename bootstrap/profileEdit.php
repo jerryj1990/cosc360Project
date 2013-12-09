@@ -1,18 +1,8 @@
-<!--Forms for the coordinator to input in order to update the general information in database-->
 <?php include_once 'header.php'; ?>
 
-<?php 
-<<<<<<< HEAD
-	session_start();
-=======
->>>>>>> ac5e1896f6ee36be216042d3d37e28a2b05b1a97
-	if($_SESSION['role']==0){
-		header('Location: profile.php');
-	}
-?>
 
-<!--SQL query to retreive the information we have in the database. the form will send to updatProfile.php to
-do the query to insert the new information in the database-->
+
+<!--Form-->
 <div class="menu">
     <?php echo '<form class="well" id="form" action="updateProfile.php?studentID='.$_GET['studentID'].'" method="post">';?>
 	<?php
@@ -21,9 +11,7 @@ do the query to insert the new information in the database-->
 		$result = $result->fetch();
 	?>
 	<p>Student ID</p>
-	<?php
-		echo '<input type="text" class="span3" placeholder="'.$result['studentID'].'"/>';
-	?>
+		<input type="text" class="span3" name="id" value="<?php echo $result['studentID']?>"/>
     <br>
     <p>Name</p>
     <input type="text"  name="firstName" value="<?php echo $result['firstName']?>"/> &nbsp;
