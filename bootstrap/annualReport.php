@@ -4,8 +4,13 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 ?>
-<!-- Annual Report Information -->
+<!-- Annual Report Information 
+this file is to retrieve information from the "annualReport 1-6" tables in
+the database if there is any report for a student we clicked on the student.php.
+
+-->
 <div class="menu">
+<!-- code retrieviing information from "annualReport" table-->
 <?php
 	session_start();
 	echo '<form class="well" id="form" action="annualReport.php?studentID='.$_GET['studentID'].'&annualReport='.$_GET['annualReport'].'" method="post">';

@@ -1,3 +1,4 @@
+<!--a table will be created according to the number of the report that the user cliecked the "create report".-->
 <?php
 	include 'functions.php';
 	if($_GET['annualReport']=="annualReport1"){

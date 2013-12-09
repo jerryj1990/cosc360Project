@@ -1,3 +1,4 @@
+<!--retrieving information from the "form" table which inculde students' personal information-->
 <?php include_once 'header.php'; ?>
 
 <div class="menu">

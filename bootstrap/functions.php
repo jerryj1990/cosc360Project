@@ -1,3 +1,5 @@
+<!--this file is all the functions that will be needed for our webpage inculdiing a
+connection to the database-->
 <?php
 $server = 'localhost'; 
 $user = '34639096'; 

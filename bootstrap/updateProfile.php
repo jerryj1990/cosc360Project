@@ -1,3 +1,5 @@
+<!--SQL query to update the information into the database accroding to the user input
+will send the user back to students.php-->
 <?php
 	include 'functions.php';
 	$result = $db->prepare("UPDATE form SET firstName = :firstName, lastName = :lastName, 

@@ -1,3 +1,4 @@
+<!--SQL query to update the information of the report in the database according to the user input and report selected-->
 <?php
 	include 'functions.php';
 	if($_GET['annualReport']=="annualReport1"){

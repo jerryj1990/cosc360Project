@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style>
 #holder { border: 4px solid #ccc; width:200px; min-height: 200px; margin: 20px auto;}
 #holder.hover { border: 4px dashed #0c0; }
@@ -7,6 +8,9 @@
     .hidden { display: none !important;}
     </style>
     
+=======
+<!--Retrieve the general information from the database-->
+>>>>>>> 1e0c26c017f857619f74b1328da7d9b34cb5b7f9
 <?php
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
