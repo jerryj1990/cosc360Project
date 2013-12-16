@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
     <meta charsest="utf-8"/>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -39,6 +38,7 @@
 				
 				echo '<button id="button" class="btn btn-primary">Submit</button>';
 				echo '<button class="btn">Clear</button>';
+				echo '<br><a href="createAccount.php">Create Account</a>';
 				echo '</form></center>';
 				echo '<div id="canvasHolder"></div>';
 			}
@@ -85,15 +85,7 @@
 		//Bind a click to a button to capture an image from the video stream
 		var el = document.getElementById("button");
 		el.addEventListener("click", captureImage, false);
-
-
-
-
-
-
 		</script>
-
-
 </div> <!-- /content -->
 </div> <!-- /wrapper -->
 </div> <!-- /container -->

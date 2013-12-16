@@ -7,7 +7,6 @@ error_reporting(E_ALL);
 <!-- Annual Report Information 
 this file is to retrieve information from the "annualReport 1-6" tables in
 the database if there is any report for a student we clicked on the student.php.
-
 -->
 <div class="menu">
 <!-- code retrieviing information from "annualReport" table-->
@@ -25,6 +24,9 @@ the database if there is any report for a student we clicked on the student.php.
 
 		/*
 			This keeps the HTML looking pretty, even though it looks a bit off here
+
+            It is simply a list of all the relevant annual report information, edited
+            for good visibility.
 		*/
 
 		echo '

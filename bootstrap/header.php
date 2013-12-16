@@ -1,6 +1,13 @@
 <?php
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
+
+// This page is the main header file. It is included on almost every single webpage.
+// The page includes all relevant HEADER information as well as ajax, javascript,
+// functions.php and stylesheet includes. 
+
+// The page also includes the main navbar which includes a link to students.php (for coordinators only)
+// and the logout button.
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +41,11 @@ error_reporting(E_ALL);
 	            <ul role="navigation" class="nav">
 					<?php
 					/*
-						- adds PROFILE, STUDENTS, and COORDINATORS links to NAVIGATION menu
+						- adds STUDENTS link to NAVIGATION menu
 						- students only see LOGOUT on menu
 					*/
 						if($_SESSION['role']==1){
 	                    	echo '<li><a href="students.php">Students</a></li>';
-	                    	echo '<li><a href="coordinators.php">Coordinators</a></li>';
 	                    }
 					?>
 	            </ul>
